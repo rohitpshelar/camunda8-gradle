@@ -30,8 +30,14 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+//	implementation 'io.camunda.spring:spring-boot-starter-camunda:8.5.19'
+	implementation 'io.camunda:spring-boot-starter-camunda-sdk:8.7.7'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+	options.compilerArgs << '-parameters'
 }
