@@ -24,6 +24,13 @@ Camunda 8 can be implement in two ways :
             - Username : demo
             - Password : demo
       
-      2. [sample.bpmn](src/main/resources/sample.bpmn) just contain USER-TASK and i was able to deploy via camundamoduler.exe and java code,
-      3. [service-task-session.bpmn](src/main/resources/service-task-session.bpmn) contains both USER-TASk and SERVICE-TASK (here you need to provide job type, i used productorder for which i created class [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
+
+   3. TASK
+      1. USER-TASK : [sample.bpmn](src/main/resources/sample.bpmn) just contain USER-TASK and i was able to deploy via camundamoduler.exe and java code,
+      2. SERVICE-TASK : [service-task-session.bpmn](src/main/resources/service-task-session.bpmn) contains both USER-TASk and SERVICE-TASK (here you need to provide job type, i used productorder for which i created class [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
       then i was able to start new instance via camundamoduler.exe and i was able to complete task then [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) method got executed automatically.
+      
+
+   4. Variables (Ref - [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
+      1. Method which send data to camunda should have return type 
+      2. Method which reads data should use @Variable 
