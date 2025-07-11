@@ -23,3 +23,7 @@ Camunda 8 can be implement in two ways :
          5. Verify by clicks in Docker > Operate/tasklist/connectors with below Default Credentials:
             - Username : demo
             - Password : demo
+      
+      2. [sample.bpmn](src/main/resources/sample.bpmn) just contain USER-TASK and i was able to deploy via camundamoduler.exe and java code,
+      3. [service-task-session.bpmn](src/main/resources/service-task-session.bpmn) contains both USER-TASk and SERVICE-TASK (here you need to provide job type, i used productorder for which i created class [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
+      then i was able to start new instance via camundamoduler.exe and i was able to complete task then [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) method got executed automatically.
