@@ -9,5 +9,5 @@ Camunda * can be implement in two ways :
 
    2. Step 2 : Create app via https://start.spring.io/
       1. Test it with http://localhost:8080/actuator
-      2. Add implementation 'io.camunda.spring:spring-boot-starter-camunda:8.5.19' to build [See line 9](https://github.com/rohitpshelar/camunda8-gradle/blob/main/README.md#L9)
-      3. Open Camunda Moduler EXE, click deployment and  Add Cluster URL, ID and SECRET, in Camunda Moduler EXE from [Go to 1.1.3](#point1.1.3)
+      2. Add implementation 'io.camunda.spring:spring-boot-starter-camunda:8.5.19' to build 
+      3. Open Camunda Moduler EXE, click deployment and  Add Cluster URL, ID and SECRET, in Camunda Moduler EXE from [See line 8](https://github.com/rohitpshelar/camunda8-gradle/blob/main/README.md#L8)
