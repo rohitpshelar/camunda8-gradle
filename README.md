@@ -33,4 +33,9 @@ Camunda 8 can be implement in two ways :
 
    4. Variables (Ref - [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
       1. Method which send data to camunda should have return type 
-      2. Method which reads data should use @Variable 
+      2. Method which reads data should use @Variable
+
+
+   5. Connectors - To communicate with other system
+      1. Inbound Connector ( External System to Camunda Communication)
+      1. Outbound Connector ( Camunda to External System Communication)
