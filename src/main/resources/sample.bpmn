@@ -8,7 +8,6 @@
     <bpmn:userTask id="Activity_17eo393" name="user-task">
       <bpmn:extensionElements>
         <zeebe:userTask />
-        <zeebe:formDefinition formId="samle" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1grccy9</bpmn:incoming>
       <bpmn:outgoing>Flow_1bjh4xo</bpmn:outgoing>
