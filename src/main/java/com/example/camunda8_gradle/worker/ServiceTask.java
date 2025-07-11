@@ -8,21 +8,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class ProductOrder {
+public class ServiceTask {
 
-    @JobWorker(type = "productorder", autoComplete = true)
-    public Map<String, Object> getProduct() {
+    @JobWorker(type = "javaToCamunda", autoComplete = true)
+    public Map<String, Object> javaToCamunda() {
         System.out.println("**Service Task Executed**");
-        var variable = new HashMap();
-        variable.put("productId","100");
+        var variable = new HashMap<String, Object>();
+        variable.put("productId", "100");
         return variable;
     }
 
-    @JobWorker(type = "getproductorder", autoComplete = true)
-    public void getproductorder(@Variable String productId) {
+    @JobWorker(type = "camundaToJava", autoComplete = true)
+    public void camundaToJava(@Variable String productId) {
         System.out.println("**Service Task Get Product Executed**");
-        System.out.println("ProductId = "+productId);
+        System.out.println("ProductId = " + productId);
     }
-
 
 }

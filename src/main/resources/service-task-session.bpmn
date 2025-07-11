@@ -15,7 +15,7 @@
     <bpmn:sequenceFlow id="Flow_0h6slm7" sourceRef="Activity_0dqtnql" targetRef="Activity_170v34o" />
     <bpmn:serviceTask id="Activity_170v34o" name="service-task">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="productorder" />
+        <zeebe:taskDefinition type="javaToCamunda" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0h6slm7</bpmn:incoming>
       <bpmn:outgoing>Flow_0yfvq5v</bpmn:outgoing>
@@ -23,7 +23,7 @@
     <bpmn:sequenceFlow id="Flow_0yfvq5v" sourceRef="Activity_170v34o" targetRef="Activity_188r4v2" />
     <bpmn:serviceTask id="Activity_188r4v2" name="get variable service task">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="getproductorder" />
+        <zeebe:taskDefinition type="camundaToJava" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0yfvq5v</bpmn:incoming>
       <bpmn:outgoing>Flow_08d8n7t</bpmn:outgoing>
