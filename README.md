@@ -18,8 +18,8 @@ Camunda 8 can be implement in two ways :
       1. Install Docker
          1. Download from -  https://docs.docker.com/desktop/setup/install/windows-install/ (Around 500mb)
          2. Install exe file and complete process
-         3. go to for instruction https://github.com/techbuzzblogs/camunda/tree/main/camunda-platform-8.0.0 and download >  docker-compose-core.yaml, I have added it in project [docker-compose-core.yaml](https://github.com/rohitpshelar/camunda8-gradle/blob/main/docker-compose-core.yaml)
-         4. Open  docker-compose-core.yaml Folder and open CMD  and run below command - docker-compose -f docker-compose-core.yaml up -d
+         3. select latest version from https://github.com/camunda/camunda-distributions/tree/main/docker-compose/versions and download >  folder
+         4. Open Folder and open CMD and run below command - docker-compose -f docker-compose-core.yaml up -d
          5. Verify by clicks in Docker > Operate/tasklist/connectors with below Default Credentials:
             - Username : demo
             - Password : demo
