@@ -5,11 +5,12 @@ Camunda 8 can be implement in two ways :
    1. Saas Based (Software as a Service)  - it means Cloud
    
       1. Step 1 : https://camunda.com/fr/get-started/
-         1. Click New Cluster  > click API > Create new Client
-         2. After creating Client you will get Cluster URL, ID and SECRET 
+         1. LOGIN URL : https://weblogin.cloud.camunda.io/ (AC:rps)
+         2. Click New Cluster  > click API > Create new Client
+         3. After creating Client you will get Cluster URL, ID and SECRET 
    
       2. Step 2 : Create app via https://start.spring.io/
-         1. Test it with http://localhost:8080/actuator
+         1. Test it with http://localhost:8080/actuator 
          2. Add implementation 'io.camunda.spring:spring-boot-starter-camunda:8.5.19' to build 
          3. Open Camunda Moduler EXE, click deployment and  Add Cluster URL, ID and SECRET, in Camunda Moduler EXE from [See line 8](https://github.com/rohitpshelar/camunda8-gradle/blob/main/README.md#L8)
 
@@ -31,11 +32,14 @@ Camunda 8 can be implement in two ways :
       then i was able to start new instance via camundamoduler.exe and i was able to complete task then [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) method got executed automatically.
       
 
-   4. Variables (Ref - [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
+   4. Variables - [service-task-session.bpmn](src/main/resources/service-task-session.bpmn) >   (Ref - [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
       1. Method which send data to camunda should have return type 
       2. Method which reads data should use @Variable
 
 
    5. Connectors - To communicate with other system
       1. Inbound Connector ( External System to Camunda Communication)
-      1. Outbound Connector ( Camunda to External System Communication)
+         1. Webhook - same like Rest APi (get, post,..) [webhook-inbound-connector.bpmn](src/main/resources/webhook-inbound-connector.bpmn) tested via postman, with both type saas and local -  [Camunda8-Gradle.postman_collection.json](Camunda8-Gradle.postman_collection.json)
+          - for saas - URL format = http(s)://<camunda.client.cloud.region>.connectors.camunda.io/<..cloud.cluster-id>/inbound/<bpmn::webhook ID>
+          - Local -URL Format - http://localhost:8085/inbound/<bpmn::webhook ID>
+      2. Outbound Connector ( Camunda to External System Communication)

@@ -1,0 +1,67 @@
+{
+	"info": {
+		"_postman_id": "5298baa3-794c-4761-987d-a0612d9d25a5",
+		"name": "Camunda8-Gradle",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "345744"
+	},
+	"item": [
+		{
+			"name": "webhook-inbound-connector",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"variables\" : {\r\n        \"input1\" : { \"value\" : 10, \"type\" : \"integer\"}\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8085/inbound/inboud",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"inbound",
+						"inboud"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saas-webhook-inbound-connector Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"variables\" : {\r\n        \"input1\" : { \"value\" : 10, \"type\" : \"integer\"}\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "https://lhr-1.connectors.camunda.io/f1a13d23-4cfd-4a8c-9891-0ea85a73ddca/inbound/webhook-inbound-connector",
+					"protocol": "https",
+					"host": [
+						"lhr-1",
+						"connectors",
+						"camunda",
+						"io"
+					],
+					"path": [
+						"f1a13d23-4cfd-4a8c-9891-0ea85a73ddca",
+						"inbound",
+						"webhook-inbound-connector"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
