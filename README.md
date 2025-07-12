@@ -40,6 +40,6 @@ Camunda 8 can be implement in two ways :
    5. Connectors - To communicate with other system
       1. Inbound Connector ( External System to Camunda Communication)
          1. Webhook - same like Rest APi (get, post,..) [webhook-inbound-connector.bpmn](src/main/resources/webhook-inbound-connector.bpmn) tested via postman, with both type saas and local -  [Camunda8-Gradle.postman_collection.json](Camunda8-Gradle.postman_collection.json)
-          - for saas - URL format = http(s)://<camunda.client.cloud.region>.connectors.camunda.io/<..cloud.cluster-id>/inbound/<bpmn::webhook ID>
-          - Local -URL Format - http://localhost:8085/inbound/<bpmn::webhook ID>
+            - for saas - URL format = http(s)://<camunda.client.cloud.region>.connectors.camunda.io/<..cloud.cluster-id>/inbound/<bpmn::webhook ID>
+            - Local -URL Format - http://localhost:8085/inbound/<bpmn::webhook ID>
       2. Outbound Connector ( Camunda to External System Communication)
