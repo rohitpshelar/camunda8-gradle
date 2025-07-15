@@ -1,47 +1,87 @@
-# camunda8-gradle
-https://camunda.com/
+# Camunda 8 Gradle Integration
 
-Camunda 8 can be implement in two ways : 
-1. Saas Based (Software as a Service)  - It means Cloud
-      1. Step 1 : https://camunda.com/fr/get-started/
-         1. LOGIN URL : https://weblogin.cloud.camunda.io/ (AC:rps)
-         2. Click New Cluster  > click API > Create new Client
-         3. After creating Client you will get Cluster URL, ID and SECRET 
-   
-      2. Step 2 : Create app via https://start.spring.io/
-         1. Test it with http://localhost:8080/actuator 
-         2. Add implementation `io.camunda.spring:spring-boot-starter-camunda:8.5.19` to build 
-         3. Open Camunda Moduler EXE, click deployment and  Add Cluster URL, ID and SECRET, in Camunda Moduler EXE from [See line 8](https://github.com/rohitpshelar/camunda8-gradle/blob/main/README.md#L8)
+![Camunda](https://img.shields.io/badge/Camunda-8-orange?logo=camunda&logoColor=white)
+
+This project demonstrates how to integrate Camunda 8 with a Spring Boot application using Gradle. It covers both SaaS and self-managed deployments, task handling, variables, and connectors.
+
+## Table of Contents
+- [Deployment Options](#deployment-options)
+    - [SaaS (Cloud) Deployment](#saas-cloud-deployment)
+    - [Self-Managed Deployment](#self-managed-deployment)
+- [Task Types](#task-types)
+    - [User Task](#user-task)
+    - [Service Task](#service-task)
+- [Variables Handling](#variables-handling)
+- [Connectors](#connectors)
+    - [Inbound Connectors](#inbound-connectors)
+    - [Outbound Connectors](#outbound-connectors)
+
+## Deployment Options
+
+### SaaS (Cloud) Deployment
+
+1. **Set up Camunda Cloud**
+    - Go to [Camunda Get Started](https://camunda.com/fr/get-started/)
+    - Login at [Camunda Cloud Login](https://weblogin.cloud.camunda.io/)
+    - Create a new cluster and generate API credentials (Client ID and Secret)
+
+2. **Create Spring Boot Application**
+    - Use [Spring Initializr](https://start.spring.io/)
+    - Add Camunda dependency:
+      ```gradle
+      implementation 'io.camunda.spring:spring-boot-starter-camunda:8.5.19'
+      ```
+    - Test with: `http://localhost:8080/actuator`
+    - Configure Camunda Module with your cluster credentials
+
+### Self-Managed Deployment
+
+1. **Install Docker**
+    - Download from [Docker Desktop for Windows](https://docs.docker.com/desktop/setup/install/windows-install/) (~500MB)
+    - Complete the installation process
+
+2. **Set up Camunda**
+    - Choose a version from [Camunda Distributions](https://github.com/camunda/camunda-distributions/tree/main/docker-compose/versions)
+    - Run:
+      ```bash
+      docker-compose -f docker-compose-core.yaml up -d
+      ```
+    - Access components with default credentials:
+        - Username: `demo`
+        - Password: `demo`
+
+## Task Types
+
+### User Task
+- Sample BPMN: [`sample.bpmn`](src/main/resources/sample.bpmn)
+- Deployable via Camunda Modeler or programmatically
+
+### Service Task
+- Sample BPMN: [`service-task-session.bpmn`](src/main/resources/service-task-session.bpmn)
+- Requires job type definition
+- Implementation: [`ProductOrder.java`](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java)
+- Automatically executes when task is completed
+
+## Variables Handling
+- Methods sending data to Camunda must have return types
+- Methods reading data should use `@Variable` annotation
+- Example in [`ProductOrder.java`](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java)
+
+## Connectors
+
+### Inbound Connectors (External System → Camunda)
+- **Webhook Implementation**: [`webhook-inbound-connector.bpmn`](src/main/resources/webhook-inbound-connector.bpmn)
+- Tested with Postman: [`Camunda8-Gradle.postman_collection.json`](Camunda8-Gradle.postman_collection.json)
+
+##### URL Formats:
+- **SaaS**:  
+  `http(s)://<camunda.client.cloud.region>.connectors.camunda.io/<..cloud.cluster-id>/inbound/<bpmn::webhook ID>`
+- **Local**:  
+  `http://localhost:8085/inbound/<bpmn::webhook ID>`
+
+### Outbound Connectors (Camunda → External System)
 
 
-   2. Self Managed (Docker Compose & Kubernetes)
-      1. Install Docker
-         1. Download from -  https://docs.docker.com/desktop/setup/install/windows-install/ (Around 500mb)
-         2. Install exe file and complete process
-         3. select latest version from https://github.com/camunda/camunda-distributions/tree/main/docker-compose/versions and download >  folder
-         4. Open Folder and open CMD and run below command 
-         ```
-          docker-compose -f docker-compose-core.yaml up -d
-         ```
-         5. Verify by clicks in Docker > Operate/tasklist/connectors with below Default Credentials:
-            - Username : demo
-            - Password : demo
-      
+---
 
-   3. TASK
-      1. USER-TASK : [sample.bpmn](src/main/resources/sample.bpmn) just contain USER-TASK and i was able to deploy via camundamoduler.exe and java code,
-      2. SERVICE-TASK : [service-task-session.bpmn](src/main/resources/service-task-session.bpmn) contains both USER-TASk and SERVICE-TASK (here you need to provide job type, i used productorder for which i created class [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
-      then i was able to start new instance via camundamoduler.exe and i was able to complete task then [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) method got executed automatically.
-      
-
-   4. Variables - [service-task-session.bpmn](src/main/resources/service-task-session.bpmn) >   (Ref - [ProductOrder.java](src/main/java/com/example/camunda8_gradle/worker/ProductOrder.java) )
-      1. Method which send data to camunda should have return type 
-      2. Method which reads data should use `@Variable`
-
-
-   5. Connectors - To communicate with other system
-      1. Inbound Connector ( External System to Camunda Communication)
-         1. Webhook - same like Rest APi (get, post,..) [webhook-inbound-connector.bpmn](src/main/resources/webhook-inbound-connector.bpmn) tested via postman, with both type saas and local -  [Camunda8-Gradle.postman_collection.json](Camunda8-Gradle.postman_collection.json)
-            - for saas - URL format = `http(s)://<camunda.client.cloud.region>.connectors.camunda.io/<..cloud.cluster-id>/inbound/<bpmn::webhook ID>`
-            - Local -URL Format - `http://localhost:8085/inbound/<bpmn::webhook ID>`
-      2. Outbound Connector ( Camunda to External System Communication)
+For more information, visit the [official Camunda website](https://camunda.com/).
